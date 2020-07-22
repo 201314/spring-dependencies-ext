@@ -192,12 +192,6 @@
                 <version>${UserAgentUtils.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.9</version>
-            </dependency>
-
             <!-- Token生成解析工具 -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -209,7 +203,6 @@
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>1.60</version>
             </dependency>
-
 
             <dependency>
                 <groupId>io.zipkin.java</groupId>

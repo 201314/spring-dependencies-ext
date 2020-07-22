@@ -19,13 +19,15 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <javadoc.version>3.2.0</javadoc.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--
         原因：由于2.1.5.RELEASE 升级到了3.1.2 造成的问题，有些IDE插件不兼容的问题造成的。
         解决：在pom.xml 文件中的 properties 加入maven jar 插件的版本号
-         -->
+
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        -->
 
         <fastjson.version>1.2.70</fastjson.version>
         <commons-io.version>2.6</commons-io.version>
@@ -207,6 +209,78 @@
                 <artifactId>bcprov-jdk15on</artifactId>
                 <version>1.60</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+
+            <!-- 使用消息的方式收集数据（使用rabbitmq） -->
+            <!-- <dependency> -->
+            <!-- <groupId>io.zipkin.java</groupId> -->
+            <!-- <artifactId>zipkin-autoconfigure-collector-rabbitmq</artifactId> -->
+            <!-- <version>2.7.0</version> -->
+            <!-- </dependency> -->
+            <!-- 使用消息的方式收集数据（使用kafka） -->
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-collector-kafka</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+            <!-- 使用elasticsearch存储，也可以换成mysql,自行百度 -->
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-storage-elasticsearch-http</artifactId>
+                <version>2.8.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <!--zuul限流 -->
+            <dependency>
+                <groupId>com.marcosbarbero.cloud</groupId>
+                <artifactId>spring-cloud-zuul-ratelimit</artifactId>
+                <version>${spring-cloud-zuul-ratelimit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>2.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>2.0.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-hystrix</artifactId>
+                <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui-turbine</artifactId>
+                <version>${spring-boot-admin-server.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.9</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -220,6 +294,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 可以自己手动添加additional-spring-configuration-metadata.json, 它的格式和spring-configuration-metadata.json一致,两个json的groups要一致 -->
+        <!-- 打包，自动生成spring-configuration-metadata.json -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -260,7 +336,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>${javadoc.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

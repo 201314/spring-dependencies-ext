@@ -321,6 +321,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1-jboss-1</version>
                     <configuration>
+                        <!-- 如果想让参数名称和源码中真实名称一致，–parameters可以在编译时手动指定，
+                        也可以添加到maven-compiler-plugin-->
+                        <compilerArgument>-parameters</compilerArgument>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <encoding>UTF-8</encoding>

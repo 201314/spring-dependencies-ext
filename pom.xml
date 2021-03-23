@@ -358,6 +358,15 @@
                         <useDefaultDelimiters>true</useDefaultDelimiters>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <!-- 设置成false，否则检查web.xml是否存在。因为springboot是没有web.xml的 -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!-- 如果mapper.xml是放在src/main/java目录下，需配置以下 -->

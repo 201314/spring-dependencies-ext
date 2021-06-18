@@ -375,11 +375,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven-source-plugin.version}</version>
-                    <configuration>
-                        <encoding>utf-8</encoding>
-                        <!-- 需要加入，因为maven默认的是${},而springbooot 默认会把此替换成@{} -->
-                        <useDefaultDelimiters>true</useDefaultDelimiters>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

@@ -20,6 +20,7 @@
     <properties>
         <spring-boot-dependencies.version>2.3.5.RELEASE</spring-boot-dependencies.version>
         <java.version>1.8</java.version>
+        <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
         <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -384,6 +385,37 @@
                         <!-- 设置成false，否则检查web.xml是否存在。因为springboot是没有web.xml的 -->
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flatten-maven-plugin.version}</version>
+                    <configuration>
+                        <updatePomFile>true</updatePomFile>
+                        <flattenMode>oss</flattenMode>
+                        <pomElements>
+                            <description>remove</description>
+                            <url>remove</url>
+                            <scm>remove</scm>
+                            <distributionManagement>remove</distributionManagement>
+                        </pomElements>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>flatten</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>flatten</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>flatten.clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

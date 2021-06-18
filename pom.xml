@@ -18,10 +18,28 @@
     </developers>
 
     <properties>
+        <spring-boot-dependencies.version>2.3.5.RELEASE</spring-boot-dependencies.version>
         <java.version>1.8</java.version>
-        <javadoc.version>3.2.0</javadoc.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+        <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-invoker-plugin.version>3.2.2</maven-invoker-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
+
+
         <!--
         原因：由于2.1.5.RELEASE 升级到了3.1.2 造成的问题，有些IDE插件不兼容的问题造成的。
         解决：在pom.xml 文件中的 properties 加入maven jar 插件的版本号
@@ -56,7 +74,7 @@
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.3.5.RELEASE</version>
+                <version>${spring-boot-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -313,7 +331,7 @@
                     <!-- 所以此plugin插件，按需放在打成springboot jar的pom下 -->
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>2.4.0-M1</version>
+                    <version>${spring-boot-dependencies.version}</version>
                     <executions>
                         <execution>
                             <goals>
@@ -325,7 +343,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1-jboss-1</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <!-- 如果想让参数名称和源码中真实名称一致，–parameters可以在编译时手动指定，
                         也可以添加到maven-compiler-plugin-->
@@ -338,20 +356,20 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${javadoc.version}</version>
+                    <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <skip>true</skip>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
                     <configuration>
                         <encoding>utf-8</encoding>
                         <!-- 需要加入，因为maven默认的是${},而springbooot 默认会把此替换成@{} -->
@@ -361,7 +379,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.3.1</version>
+                    <version>${maven-war-plugin.version}</version>
                     <configuration>
                         <!-- 设置成false，否则检查web.xml是否存在。因为springboot是没有web.xml的 -->
                         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -369,29 +387,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <!-- 如果mapper.xml是放在src/main/java目录下，需配置以下 -->
-        <!-- 各个项目自己去配置 -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/mapper/*.xml</include>
-                    <include>**/mappers/*.xml</include>
-                </includes>
-            </resource>
-            <!--指定资源的位置 -->
-            <!-- 各个项目自己去配置 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <!-- 加入此属性，才会进行过滤 -->
-                <!--<filtering>false</filtering>-->
-                <!--<includes>-->
-                <!--<include>/**</include>-->
-                <!--<include>**/mapper/*.xml</include>-->
-                <!--<include>**/mappers/*.xml</include>-->
-                <!--</includes>-->
-            </resource>
-        </resources>
     </build>
 </project>

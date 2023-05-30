@@ -53,11 +53,12 @@
         -->
 
         <fastjson.version>1.2.70</fastjson.version>
-        <commons-io.version>2.6</commons-io.version>
-        <commons-codec.version>1.6</commons-codec.version>
-        <commons-lang3.version>3.9</commons-lang3.version>
-        <commons-fileupload.version>1.3.3</commons-fileupload.version>
-        <commons-net.version>3.6</commons-net.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <commons-io.version>2.12.0</commons-io.version>
+        <commons-codec.version>1.15</commons-codec.version>
+        <commons-fileupload.version>1.5</commons-fileupload.version>
+        <commons-net.version>3.9.0</commons-net.version>
         <mybatis-plus-boot-starter.version>3.1.0</mybatis-plus-boot-starter.version>
         <redisson-spring-boot-starter.version>3.10.2</redisson-spring-boot-starter.version>
         <logback-kafka-appender.version>0.1.0</logback-kafka-appender.version>
@@ -106,6 +107,16 @@
                 <version>${fastjson.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
@@ -114,11 +125,6 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-fileupload</groupId>
@@ -301,7 +307,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.2.4</version>
+                <version>1.2.16</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
